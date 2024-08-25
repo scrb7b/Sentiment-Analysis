@@ -6,7 +6,9 @@ from transformers import  BertModel
 LEARNING_RATE = 2e-5
 
 class ToxicCommentClassifier(nn.Module):
+
     def __init__(self, n_classes):
+
         super(ToxicCommentClassifier, self).__init__()
         self.bert = BertModel.from_pretrained('bert-base-uncased')
         self.drop = nn.Dropout(p=0.3)

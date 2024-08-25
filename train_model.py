@@ -1,6 +1,5 @@
 import torch
-from sklearn.metrics import accuracy_score
-from build_dataset import ToxicCommentsDataset, get_datasets
+from build_dataset import get_datasets
 from model import model, criterion, optimizer
 
 train_loader, val_loader = get_datasets()
@@ -33,4 +32,6 @@ for epoch in range(EPOCHS):
         optimizer.zero_grad()
 
         print(f'Epoch {epoch + 1}/{EPOCHS} loss {run_loss:.3f}')
-        print(f'Corect predict {correct_predictions} / {pre}')
+        print(f'Corect predict {correct_predictions}/{pre}')
+
+torch.save(model.state_dict(), 'Sentiment_Bert_3_epochs.pth')
