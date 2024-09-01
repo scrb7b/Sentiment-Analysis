@@ -8,7 +8,7 @@ train_loader, val_loader = get_datasets()
 EPOCHS = 3
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
+model.load_state_dict(torch.load('Sentiment_Bert_1_epochs.pth'))
 y_pred = []
 y_true = []
 
