@@ -4,9 +4,11 @@ from model import model, criterion, optimizer
 
 train_loader, val_loader = get_datasets()
 
-EPOCHS = 3
+EPOCHS = 1
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+total_batches = len(train_loader)
 
 for epoch in range(EPOCHS):
 
@@ -31,7 +33,8 @@ for epoch in range(EPOCHS):
         optimizer.step()
         optimizer.zero_grad()
 
-        print(f'Epoch {epoch + 1}/{EPOCHS} loss {run_loss:.3f}')
-        print(f'Corect predict {correct_predictions}/{pre}')
+        progress = (i + 1) / total_batches * 100
+        print(f"Epoch [{epoch + 1}/{EPOCHS}], Step [{i + 1}/{total_batches}], "
+              f"Progress: {progress:.2f}%, Loss: {loss.item()}")
 
-torch.save(model.state_dict(), 'Sentiment_Bert_3_epochs.pth')
+torch.save(model.state_dict(), 'Sentiment_Bert_1_epochs.pth')
